@@ -4,17 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="scripts.js"></script>
+    <link href="style.css" rel="stylesheet">
     <title>Manejo API OMDB</title>
 </head>
 <body>
-    <input type="button" value="Detalles" onclick="cargarDatos()"><br><br>
-    <table id="tablaDatos" class="dat">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titulo</th>
-            </tr>
-        </thead>
+    <input type="text" value="" id="Titulo"><br><br>
+    <input type="button" value="Buscar" onclick="buscarPorTitulo()"><br><br>
+    <table>
+        <tr>
+            <td>
+                <table id="detalles" class="dat">  
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Titulo</th>
+                            <th>Año</th>
+                            <th>Tipo</th>
+                            <th>Poster</th>
+                        </tr>
+                    </thead>
+                    <tbody id="informacion">
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id='detalles'>
+                    
+                </div>
+            </td>
+        </tr>
     </table>
     
 </body>

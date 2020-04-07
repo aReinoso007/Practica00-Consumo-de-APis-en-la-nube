@@ -1,6 +1,4 @@
 
-var randMArray = ['Star Wars', 'Game Of Thrones', 'Harry Potter','The Big Bang Theory'];
-var data;
 
 function buscarPorTitulo(){
   var titulo = document.getElementById("titulo").value;
@@ -18,8 +16,28 @@ function buscarPorTitulo(){
     }else {
       xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
+    xmlhttp.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+        var data = JSON.parse(this.responseText)
+        data.Search.forEach(movie => {
+          detalles += "<tr>"+
+                      "<td><a href='#' onclick=\"buscarPorID{'"+movie.imdbID + "')\">Mas de.."+
+                      "td>" + movie.Title + "</td>" +
+                      "<td>" + movie.Year + "</td>" +
+                      "<td>" + movie.Type + "</td>" +
+                      "<td><img src="+movie.Poster + "></td" +
+                      "</tr>";                      
+        });
+        document.getElementById("informacion").innerHTML = detalles;
+      }
+    };
+    xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full",true);
+    xmlhttp.send();
   }
 }
+
+
+
 
 function movieSearch(q){
   $.get("https://www.omdbapi.com/?s="+q+"&apikey=70833c90", function(rawdata){
