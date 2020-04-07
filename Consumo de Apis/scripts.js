@@ -2,11 +2,33 @@
 var randMArray = ['Star Wars', 'Game Of Thrones', 'Harry Potter','The Big Bang Theory'];
 var data;
 
+function buscarPorTitulo(){
+  var titulo = document.getElementById("titulo").value;
+  var detalles="";
+  if(titulo==""){
+    detalles = "<tr>" + 
+    "<td colspan='5'>No informacion disponible...</td>" +
+    "</tr>";
+    document.getElementById("informacion").innerHTML = detalles;
+
+  }else{
+    if(window.XMLHttpRequest){
+      xmlhttp = new XMLHttpRequest();
+
+    }else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+  }
+}
+
 function movieSearch(q){
   $.get("https://www.omdbapi.com/?s="+q+"&apikey=70833c90", function(rawdata){
   
   var rawString = JSON.stringify(rawdata);
   data = JSON.parse(rawString);
+  for(var i=0; i < data.length;i++){
+
+  }
   var titulo = data.Search[0].Title;
   var anio = data.Search[0].Year;
   var url = "https://www.imdb.com/title/"+data.Search[0].imdbID+"/";
