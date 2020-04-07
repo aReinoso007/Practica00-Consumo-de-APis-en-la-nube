@@ -1,4 +1,4 @@
-
+var randMArray=['Star Wars', 'Game Of Thrones', 'The Big Bang Theory'];
 
 function buscarPorTitulo(){
   var titulo = document.getElementById("titulo").value;
