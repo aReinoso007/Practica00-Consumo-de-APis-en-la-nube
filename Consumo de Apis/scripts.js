@@ -5,7 +5,7 @@ function buscarPorTitulo(){
   var detalles="";
   if(titulo==""){
     detalles = "<tr>" + 
-    "<td colspan='5'>No informacion disponible...</td>" +
+    "<td colspan='5'>No se encontro nada...</td>" +
     "</tr>";
     document.getElementById("informacion").innerHTML = detalles;
 
@@ -22,16 +22,17 @@ function buscarPorTitulo(){
         data.Search.forEach(movie => {
           detalles += "<tr>"+
                       "<td><a href='#' onclick=\"buscarPorID{'"+movie.imdbID + "')\">"+
+                      "<td><img src="+movie.Poster + "></td" +
+                      "<td></td>"+
                       "<td>" + movie.Title + "</td>" +
                       "<td>" + movie.Year + "</td>" +
                       "<td>" + movie.Type + "</td>" +
-                      "<td><img src="+movie.Poster + "></td" +
                       "</tr>";                      
         });
         document.getElementById("informacion").innerHTML = detalles;
       }
     };
-    //console.log(data)
+
     xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full",true);
     xmlhttp.send();
   }

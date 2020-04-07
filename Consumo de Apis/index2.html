@@ -9,35 +9,39 @@
     <br><br>
 </head>
 <body>
-    <input type="text" value="" id="titulo"><br><br>
-    <button value="Buscar" onclick="buscarPorTitulo()" ><br><br>
-    <table>
-        <tr>
-            <td>
-                <table id="detalles" class="dat">  
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Titulo</th>
-                            <th>Año</th>
-                            <th>Tipo</th>
-                            <th>Poster</th>
-                        </tr>
-                    </thead>
-                    <tbody id="informacion">
-
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id='detalles'>
-
-                </div>
-            </td>
-        </tr>
-    </table>
+    <div class='contenedorBusqueda'>
+        <input type="text" value="" id="titulo"><br><br>
+        <button value="Buscar" onclick="buscarPorTitulo()">Buscar</button><br><br>
+    </div>
+   
+        <table>
+            <tr>
+                <td>
+                    <table id="detalles" class="dat">  
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Poster</th>
+                                <th>Titulo</th>
+                                <th>Año</th>
+                                <th>Tipo</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="informacion">
+    
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id='detalles'>
+    
+                    </div>
+                </td>
+            </tr>
+        </table>
     
 </body>
 </html>

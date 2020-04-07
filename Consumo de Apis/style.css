@@ -9,14 +9,21 @@
   color: blue;
   text-decoration: underline;
 }
+/*
+.contenedorBusqueda {
+  
+  padding-top: 200;
+  padding-right: 300;
+  display: inline-table;
+}*/
 
 img {
   border: 2px solid black;
   border-radius: 20px;
   opacity: 0.5;
   transition: 0.25s ease-in-out;
-  width: 300px;
-  height: 400px;
+  width: 125;
+  height: 150px;
 }
 
 img:hover {
@@ -26,15 +33,25 @@ img:hover {
 button {
   cursor: pointer;
   transition: 0.25s ease-in-out;
-  width: 20x;
-  height: 30px;
+  width: 10;
+  height: 50px;
   font-size: 20px;
   color:white;
-  background-color: black;
+  background-color: gray;
   border-radius: 20px;
   outline: none;
 }
 
 button:hover {
-  color: blue;
+  color: black;
+}
+
+.dat,th, td {
+  border: 1px solid black;
+  position: relative;
+  
+}
+td {
+  text-align: center;
+  empty-cells: hide;
 }
