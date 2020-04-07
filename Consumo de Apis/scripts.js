@@ -21,8 +21,8 @@ function buscarPorTitulo(){
         var data = JSON.parse(this.responseText)
         data.Search.forEach(movie => {
           detalles += "<tr>"+
-                      "<td><a href='#' onclick=\"buscarPorID{'"+movie.imdbID + "')\">Mas de.."+
-                      "td>" + movie.Title + "</td>" +
+                      "<td><a href='#' onclick=\"buscarPorID{'"+movie.imdbID + "')\">"+
+                      "<td>" + movie.Title + "</td>" +
                       "<td>" + movie.Year + "</td>" +
                       "<td>" + movie.Type + "</td>" +
                       "<td><img src="+movie.Poster + "></td" +
@@ -31,13 +31,14 @@ function buscarPorTitulo(){
         document.getElementById("informacion").innerHTML = detalles;
       }
     };
+    //console.log(data)
     xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full",true);
     xmlhttp.send();
   }
 }
 
 
-
+/*
 
 function movieSearch(q){
   $.get("https://www.omdbapi.com/?s="+q+"&apikey=70833c90", function(rawdata){
@@ -76,3 +77,4 @@ function apiCall() {
 
 //obtiene la variable 'button'
 apiCall();
+*/
