@@ -1,6 +1,21 @@
+
 var randMArray = ['Star Wars', 'Game Of Thrones', 'Harry Potter','The Big Bang Theory'];
+var data;
 
+function movieSearch(q){
+  $.get("https://www.omdbapi.com/?s="+q+"&apikey=70833c90", function(rawdata){
+  
+  var rawString = JSON.stringify(rawdata);
+  data = JSON.parse(rawString);
+  var titulo = data.Search[0].Title;
+  var anio = data.Search[0].Year;
+  var url = "https://www.imdb.com/title/"+data.Search[0].imdbID+"/";
 
+  var poster = data.Search[0].Poster;
+    
+  document.getElementById('answer').innerHTML="<h1>"+titulo+"</h1><br> <img src= '"+poster+"'><br><p> Year Released:"+anio+"</p> <br> <p> IMDB page: <a href='"+url+"'target='_blank'>"+url+"</a></p>"; 
+  });
+}
 function apiCall() {
   
   //$. para correr JQueries
