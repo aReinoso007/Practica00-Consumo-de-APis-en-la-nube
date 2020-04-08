@@ -12,11 +12,14 @@ var anio;
 var genero;
 var director;
 var escritor;
-var imdbRating;
+var imdbRat;
 var production;
 var plot;
 
+function paginacion(){
 
+
+}
 function buscarPorTitulo(){
   //obtenemos el valor que esta almacenando en nuestro input de tipo texto con un id ='titulo'
   var titulo = document.getElementById("titulo").value;
@@ -63,7 +66,9 @@ function buscarPorTitulo(){
                       "<td>" + movie.Year + "</td>" +
                       "<td>" + movie.Type + "</td>" +
                       "<td><a href='#'  style='text-decoration:none'     onclick=\"buscarPorID('" + movie.imdbID + "')\">'<i class='fa fa-eye'></i>'</a>" +
-                      "</tr>";          
+                      "</tr>";     
+                      console.log(data.totalResults);
+                      console.log(this.responseText);     
                                   
         });
         //para hacer un inyeccion con ajax, en nuestro html tenemos un div con un id = "informacion"
@@ -71,7 +76,7 @@ function buscarPorTitulo(){
       }
     };
     //especificamos el tipo de request que vamos a hacer, establecemos a donde vamos a realizar este quest
-    xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full",true);
+    xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full&page=9",true);
     //enviamos nuestro request
     xmlhttp.send();
   }
@@ -104,10 +109,23 @@ function displayFullInfo(idMovie){
         title = detallesPeli.Title;
         anio = detallesPeli.Year;
         genero = detallesPeli.Genre;
-
-
+        rated = detallesPeli.Rated;
+        imdbRat = detallesPeli.imdbRating;
+        director = detallesPeli.Director;
+        plot = detallesPeli.Plot;
+        
+        document.getElementById("txtTitle").innerHTML = title;
+        document.getElementById("poster").innerHTML = poster;
+        document.getElementById("anio").innerHTML = anio;
+        document.getElementById("rated").innerHTML = rated;
+        document.getElementById("imDB").innerHTML = imdbRat;
+        document.getElementById("genero").innerHTML = genero;
+        document.getElementById("Director").innerHTML = director;
+        document.getElementById("plot").innerHTML = plot;
       }
-    }
+    };
+    xmlhttp.open("GET", "https://www.omdbapi.com/?i=" + idMovie + "&apikey=70833c90&s", true);
+    xmlhttp.send();
 
   }
 
@@ -128,3 +146,10 @@ function buscarPorID(id) {
   popup.classList.add('active');
 }
 
+
+function cerrarPopup() {
+    overlay = document.getElementById('popupWindow');
+    popup = document.getElementById('popup');
+    overlay.classList.remove('active');
+    popup.classList.remove('active');
+}
