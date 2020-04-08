@@ -9,13 +9,34 @@
   color: blue;
   text-decoration: underline;
 }
-/*
-.contenedorBusqueda {
-  
-  padding-top: 200;
-  padding-right: 300;
-  display: inline-table;
-}*/
+
+#tituloPrincipal {
+  color: black;
+}
+body {
+  text-align: center;
+  background-color: gray;
+  color: black;
+} 
+
+.titulosTablas {
+  color: black;
+}
+.searchButton {
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+  width: 10;
+  height: 50px;
+  font-size: 20px;
+  color:white;
+  background-color: lightblue;
+  border-radius: 8px;
+  outline: none;
+}
+
+.searchButton:hover {
+  color: black;
+}
 
 img {
   border: 2px solid black;
@@ -29,29 +50,18 @@ img {
 img:hover {
   opacity: 1;
 }
-
-button {
-  cursor: pointer;
-  transition: 0.25s ease-in-out;
-  width: 10;
-  height: 50px;
-  font-size: 20px;
-  color:white;
-  background-color: gray;
-  border-radius: 20px;
-  outline: none;
+table{
+  border: 1px solid #000;
+  padding: 2px;
+  align-items: center;
+  border-color: #BDBDBD;
 }
 
-button:hover {
-  color: black;
-}
 
-.dat,th, td {
-  border: 1px solid black;
-  position: relative;
-  
-}
-td {
+th, td {
   text-align: center;
-  empty-cells: hide;
+  border: 1px solid black;
+  padding: 4px;
+  border-color: black;
+  color: #E6E6E6;
 }

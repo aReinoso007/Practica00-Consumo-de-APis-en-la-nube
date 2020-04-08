@@ -5,27 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="scripts.js"></script>
     <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <title>Manejo API OMDB</title>
     <br><br>
 </head>
 <body>
-    <div class='contenedorBusqueda'>
-        <input type="text" value="" id="titulo"><br><br>
-        <button value="Buscar" onclick="buscarPorTitulo()">Buscar</button><br><br>
+    <div class = "ui main text container segment" id="container">
+        <div class="ui huge header" id="tituloPrincipal">
+            Buscar en base de datos
+        </div><br><br>
     </div>
-   
+
+    <form class="ui huge form" action="/results">
+        <div class="field">
+            <div class="ui icon input">
+                <input class ="inputBusqueda"type="text" value="" id="titulo">
+                <i class="search icon"></i>
+            </div>
+        </div>
+
+        <input type="button" class="searchButton" value="Buscar" onclick="buscarPorTitulo()"></input>
+    </form>
+
+    <div class="ui main text container segment">
         <table>
             <tr>
                 <td>
                     <table id="detalles" class="dat">  
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Poster</th>
-                                <th>Titulo</th>
-                                <th>Año</th>
-                                <th>Tipo</th>
                                 
+                                <th class="titulosTablas" >Poster</th>
+                                <th class="titulosTablas" >Titulo</th>
+                                <th class="titulosTablas" >Año</th>
+                                <th class="titulosTablas" >Tipo</th>
+                                <th class="titulosTablas" >Detalles</th>
+
                             </tr>
                         </thead>
                         <tbody id="informacion">
@@ -34,14 +51,14 @@
                     </table>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <div id='detalles'>
-    
-                    </div>
-                </td>
-            </tr>
+            
         </table>
-    
+    </div>
+    <br>
+    <br>
+    <div class="footer">
+
+    </div>
+        
 </body>
 </html>
