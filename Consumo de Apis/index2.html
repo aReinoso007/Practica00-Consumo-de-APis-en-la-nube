@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="scripts.js"></script>
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
@@ -16,18 +17,19 @@
         <div class="ui huge header" id="tituloPrincipal">
             Buscar en base de datos
         </div><br><br>
+        <form class="ui huge form" action="/results">
+            <div class="field">
+                <div class="ui icon input">
+                    <input class ="inputBusqueda"type="text" value="" id="titulo">
+                    <i class="search icon"></i>
+                </div>
+            </div>
+    
+            <input type="button" class="searchButton" value="Buscar" onclick="buscarPorTitulo()"></input>
+        </form>
     </div>
 
-    <form class="ui huge form" action="/results">
-        <div class="field">
-            <div class="ui icon input">
-                <input class ="inputBusqueda"type="text" value="" id="titulo">
-                <i class="search icon"></i>
-            </div>
-        </div>
-
-        <input type="button" class="searchButton" value="Buscar" onclick="buscarPorTitulo()"></input>
-    </form>
+   
 
     <div class="ui main text container segment">
         <table>
@@ -56,6 +58,28 @@
     </div>
     <br>
     <br>
+
+    <div class="popupWindow" id="popupWindow">
+        <div class="popup" id="popup">
+            <b href="#" id="closeButton" class="btn-close" onclick="cerrarPop()">
+            <i class="fa fa-time"></i>
+            </b>
+            <h1 id="txtTitle"></h1>
+            <div id="poster">
+
+            </div>
+            <p class="popupInfo">Año de lanzamiento: <p id="anio"></p>
+            <p class="popupInfo">Rated: </p>
+            <p class="popupInfo">Rating imDB: </p>
+            <p class="popupInfo">Genero: </p>
+            <p class="popupInfo">Director: </p>
+            <p class="popupInfo">Escritor: </p>
+
+            </p>
+           
+        </div>
+    </div>
+
     <div class="footer">
 
     </div>
