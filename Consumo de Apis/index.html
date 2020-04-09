@@ -14,16 +14,9 @@
     <br><br>
 </head>
 <body>
-    <div class="fa-3x">
-        <i class="fas fa-spinner fa-spin"></i>
-        <i class="fas fa-circle-notch fa-spin"></i>
-        <i class="fas fa-sync fa-spin"></i>
-        <i class="fas fa-cog fa-spin"></i>
-        <i class="fas fa-spinner fa-pulse"></i>
-        <i class="fas fa-stroopwafel fa-spin"></i>
-      </div>
+    
     <div class = "ui main text container segment" id="container">
-        <div class="ui huge header" id="tituloPrincipal">
+        <div class="ui large header" id="tituloPrincipal">
             Buscar en base de datos
         </div><br><br>
         <form class="ui huge form" action="/results">
@@ -37,6 +30,7 @@
             <input type="button" class="searchButton" value="Buscar" onclick="buscarPorTitulo()"></input>
         </form>
     </div>
+    <br>
     <div class="ui main text container segment">
         <table>
             <tr>
@@ -65,8 +59,8 @@
     <br>
     <div class="paginas">
         <tr>
-            <input href="#" type="button" id ="btn-atras" onclick="prevPage()" value="<--"></input>
-            <input href="#" type="button" id ="btn-adel" onclick="nextPage()" value ="-->"></input>
+            <input href="#" type="button" id ="btn-atras" onclick="prevPage()" value="←"></input>
+            <input href="#" type="button" id ="btn-adel" onclick="nextPage()" value="→"></input>
         </tr>
         
     </div>
@@ -93,17 +87,28 @@
   </div>
   <br>
   <br>
-
+  <div class="fa-3x">
+    <i class="fas fa-spinner fa-spin"></i>
+    <i class="fas fa-circle-notch fa-spin"></i>
+    <i class="fas fa-sync fa-spin"></i>
+    <i class="fas fa-cog fa-spin"></i>
+  </div>
+  <br>
     <div class="footer">
         <footer>
+            <br>
             <p1 class="footer">Universidad Politecnica Salesiana</p1>
-            <p1 class="footer">Alex Jessiel Reinoso Gonzalez</p1>
-            <p1 class="footer">Estudiante</p1>
-            <p1 class="footer">Telefono: <a href="tel:+593998952718">0998952718</a></p1>
-            <p1 class="footer">E-mail: <a href="mailto:areinosog@est.ups.edu.ec">areinosog@est.ups.edu.ec</a></p1>
+            <p1 class="footer">Alex J. Reinoso </p1>
+            <br>
+            <p1 class="footer">Telefono: <a href="tel:+593998952718">0998952718 </a></p1>
+            <br>
+            <p1 class="footer">E-mail: <a href="mailto:areinosog@est.ups.edu.ec"><i class="fas fa-envelope"></i></a></p1>
+            <br>
             Todos los derechos reservados &copy;
+            <br>
         </footer>
     </div>
+    
         
 </body>
 </html>
