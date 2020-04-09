@@ -77,14 +77,28 @@ function buscarPorTitulo(){
 
 
 //esta funcion es para cuando se le da click en el ojo de 'detalles'
-function displayFullInfo(idMovie){
+function buscarPorID(id) {
+  data.Search.forEach(mov => {
+      if (mov.imdbID == id) {
+          detallar(id);
+      }
 
+  });
+  overlay = document.getElementById('overlay');
+  popup = document.getElementById('popup');
+
+
+
+  overlay.classList.add('active');
+  popup.classList.add('active');
+}
+
+function detallar(idMovie){
   //verificar que haya un entrada de parte del usuario
   if (idMovie == ""){
+    detallesPeli ="<tr>"+
     "<td colspan = 5>No hay informacion disponible por el momento... </td>" +
     "</tr>";
-
-    //para realizar una inyeccion con ajax en html
     document.getElementById("informacion").innerHTML = detalles;
   } else {
     if(window.XMLHttpRequest){
@@ -94,28 +108,30 @@ function displayFullInfo(idMovie){
     }
 
     //cuando ya este todo listo mandamos una funccion vacia
-    xmlhttp.onreadystatechange = function () {
+      xmlhttp.onreadystatechange = function () {
       //cuando se recibe una respuesta con estatus 200 significa que el request fue bien, que se ha hecho la conexion
-      if(this.readyState == 4 && this.status ==200){
+        if (this.readyState == 4 && this.status ==200){
         
-        detallesPeli = JSON.parse(this.responseText)
-        poster = "<img src="+detallesPeli.Poster +">";
-        title = detallesPeli.Title;
-        anio = detallesPeli.Year;
-        genero = detallesPeli.Genre;
-        rated = detallesPeli.Rated;
-        imdbRat = detallesPeli.imdbRating;
-        director = detallesPeli.Director;
-        plot = detallesPeli.Plot;
-        
-        document.getElementById("txtTitle").innerHTML = title;
-        document.getElementById("poster").innerHTML = poster;
-        document.getElementById("anio").innerHTML = anio;
-        document.getElementById("rated").innerHTML = rated;
-        document.getElementById("imDB").innerHTML = imdbRat;
-        document.getElementById("genero").innerHTML = genero;
-        document.getElementById("Director").innerHTML = director;
-        document.getElementById("plot").innerHTML = plot;
+          detallesPeli = JSON.parse(this.responseText)
+          poster = "<img src="+detallesPeli.Poster +">";
+          title = detallesPeli.Title;
+          anio = detallesPeli.Year;
+          genero = detallesPeli.Genre;
+
+          console.log(detallesPeli.Rated);
+
+          director = detallesPeli.Director;
+          plot = detallesPeli.Plot;
+         
+
+          document.getElementById("txtTitle").innerHTML = title;
+          document.getElementById("anio").innerHTML = anio;
+          document.getElementById("genero").innerHTML = genero;
+          document.getElementById("portada").innerHTML = poster;
+
+          
+          document.getElementById("director").innerHTML = director;
+          document.getElementById("resumenM").innerHTML = plot;
       }
     };
     xmlhttp.open("GET", "https://www.omdbapi.com/?i=" + idMovie + "&apikey=70833c90&s", true);
@@ -124,28 +140,13 @@ function displayFullInfo(idMovie){
   }
 
 }
-function buscarPorID(id) {
-  data.Search.forEach(mov => {
-      if (mov.imdbID == id) {
-          displayFullInfo(id);
-      }
-
-  });
-  overlay = document.getElementById('popupWindow');
-  popup = document.getElementById('popup');
-
-
-
-  overlay.classList.add('active');
-  popup.classList.add('active');
-}
 
 
 function cerrarPopup() {
-    overlay = document.getElementById('popupWindow');
-    popup = document.getElementById('popup');
-    overlay.classList.remove('active');
-    popup.classList.remove('active');
+  overlay = document.getElementById('overlay');
+  popup = document.getElementById('popup');
+  overlay.classList.remove('active');
+  popup.classList.remove('active');
 }
 
 function nextPage() {  
@@ -159,6 +160,7 @@ function prevPage() {
   paginacion(pagina);
 
 }
+
 function bloquear(){
   var btnAtras = document.getElementById("btn-atras");
   var btnAdelante = document.getElementById("btn-adel");

@@ -5,9 +5,11 @@
 }
 #container {
   margin-top: 4.0em;
-  background-color: rgb(228, 224, 217);
+  background-color: rgb(98, 132, 211);
 }
-
+.cuerpo {
+  color: #000;
+}
 
 .cotainer h3 {
   font-weight: 300;
@@ -23,6 +25,7 @@ body {
   text-align: center;
   background-color: gray;
   color: black;
+  
 } 
 
 .titulosTablas {
@@ -62,6 +65,7 @@ table{
   width: 650px;
   align-items: center;
   border-color: #BDBDBD;
+  animation-fill-mode: forwards;
 }
 
 
@@ -74,19 +78,26 @@ th, td {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.popupWindow {
-  background: ivory;
-  position: relative;
-  top: auto;
+
+.overlay {  
+  background: rgba(0,0,0,.3);
+  position: fixed; 
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  visibility: hidden;
-}
-
-.popup {
-  background-color:rgb(128, 128, 129,0.8);
-  /* background: #f8f8f8; */
+   visibility: hidden;   
+  }
+  .overlay.active {
+  visibility: visible;
+  }
+  
+  
+  .popup {
+  background-color: rosybrown;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
   border-radius: 3px;
   font-family: 'Montserrat', sans-serif;
@@ -99,50 +110,82 @@ th, td {
   opacity: 0;
   }
   
-
-.popup.active {
-  opacity: 1;
-  transform: scale(2);
-}
-
-.popup h1 {
+  .popup .btn-cerrar-popup {
+  font-size: 16px;
+  line-height: 16px;
+  display: block;
+  text-align: right;
+  transition: .3s ease all;
+  color: #BBBBBB;
+  
+  }
+  
+  .popup .btn-cerrar-popup:hover {
+  color: #000;
+  } 
+  
+  .popup h1 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
   opacity: 0;
   
   }
-
-.popup.active h1 {
-  animation: animaTitle .5s ease .4 forwards;
-}
-
-.popup.active h3 {
-  animation: animaSecundaria .5s ease .4 forwards;
-}
-
-.popup.active p {
-  animation: animaSecundaria .5s ease .4 forwards;
-}
-
-
-@keyframes animaTitle {
+  .popup h3 {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    opacity: 0;
+  }
+  
+  p { display:inline; }
+  
+  p{
+    opacity: 0;
+    
+  }
+  
+  .titulosDetalles{
+    color: white;
+  }
+  
+  
+  .popup.active {opacity: 1; transform: scale(1);}
+  .popup.active h1 { animation: entradaTitulo .8s ease .5s forwards; }
+  .popup.active h3 { animation: entradaSubtitulo .8s ease .5s forwards; }
+  .popup.active p { animation: entradaSubtitulo .8s ease .5s forwards; }
+  
+  @keyframes entradaTitulo {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-25px);
   }
+  
   to {
     transform: translateY(0);
+    opacity: 1;
   }
-}
+  }
+  
+  @keyframes entradaSubtitulo {
+    from {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+  
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
-@keyframes animaSecundaria {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
+  footer{
+    clear: both;
+    display: block;
+    position: absolute bottom;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    text-align: center;
   }
-  to {
-    transform: translateY(0);
-    opacity: 0;
-  }
-}

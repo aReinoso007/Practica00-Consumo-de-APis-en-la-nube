@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head style="color: black">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -9,10 +9,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
     <title>Manejo API OMDB</title>
     <br><br>
 </head>
-<body>
+<body style="color:black">
     <div class = "ui main text container segment" id="container">
         <div class="ui huge header" id="tituloPrincipal">
             Buscar en base de datos
@@ -28,9 +29,6 @@
             <input type="button" class="searchButton" value="Buscar" onclick="buscarPorTitulo()"></input>
         </form>
     </div>
-
-   
-
     <div class="ui main text container segment">
         <table>
             <tr>
@@ -38,7 +36,6 @@
                     <table id="detalles" class="dat">  
                         <thead>
                             <tr>
-                                
                                 <th class="titulosTablas" >Poster</th>
                                 <th class="titulosTablas" >Titulo</th>
                                 <th class="titulosTablas" >Año</th>
@@ -65,34 +62,39 @@
         </tr>
         
     </div>
+     <div class="overlay" id="overlay">
 
-    <div class="popupWindow" id="popupWindow">
-        <div class="popup" id="popup">
-            <b href="#" id="closeButton" class="btn-close" onclick="cerrarPop()">
-            <i class="fa fa-time"></i>
-            </b>
-            <h1 id="txtTitle"></h1>
-            <div id="poster">
+    <div class="popup" id="popup">
+      <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup" onclick="cerrarPopup()"><i
+          class="fas fa-times"></i></a>
+      <h1 id="txtTitle"></h1>
+      <div id="portada">
+      </div>
+      <div id="scroll">
+        <p class="titulosDetalles">Año: <p id="anio"></p>
+        </p><br>
+        <p class="titulosDetalles">Genero: <p id="genero"></p>
+        </p><br>
+        <p class="titulosDetalles">Director: <p id="director"></p>
+        </p><br>
+        <p class="titulosDetalles">Plot: <p id="resumenM"></p>
+        </p>
+      </div>
 
-            </div>
-            <p class="popupInfo">Año de lanzamiento: <p id="anio"></p>
-            </p><br>
-            <p class="popupInfo">Rated: <p id="rated"></p> </p>
-            <br>
-            <p class="popupInfo">Rating imDB: <p id="imDB"></p>
-            </p><br>
-            <p class="popupInfo">Genero: <p id="genero"></p>
-            </p><br>
-            <p class="popupInfo">Director: <p id="Director"></p>
-            </p><br>
-            <p class="popupInfo">Resumen: <p id="plot"></p>
-            </p><br>
-           
-        </div>
     </div>
+  </div>
+  <br>
+  <br>
 
     <div class="footer">
-
+        <footer>
+            <p1 class="footer">Universidad Politecnica Salesiana</p1>
+            <p1 class="footer">Alex Jessiel Reinoso Gonzalez</p1>
+            <p1 class="footer">Estudiante</p1>
+            <p1 class="footer">Telefono: <a href="tel:+593998952718">0998952718</a></p1>
+            <p1 class="footer">E-mail: <a href="mailto:areinosog@est.ups.edu.ec">areinosog@est.ups.edu.ec</a></p1>
+            Todos los derechos reservados &copy;
+        </footer>
     </div>
         
 </body>
