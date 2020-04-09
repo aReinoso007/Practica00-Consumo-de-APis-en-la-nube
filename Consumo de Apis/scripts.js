@@ -64,6 +64,8 @@ function buscarPorTitulo(){
           "<td><a href='#'  style='text-decoration:none'     onclick=\"buscarPorID('" + movie.imdbID + "')\">'<i class='fas fa-info-circle'></i>'</a>" +
           "</tr>";     
 
+          console.log(this.responseText);
+
         });
         document.getElementById("informacion").innerHTML = detalles;
       }
