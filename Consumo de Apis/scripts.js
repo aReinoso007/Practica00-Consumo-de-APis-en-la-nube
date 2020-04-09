@@ -1,7 +1,7 @@
-var randMArray=['Star Wars', 'Game Of Thrones', 'The Big Bang Theory'];
+
 var data;
-var detalles;
 var detallesPeli; //esta es para los detalles especificos de una pelicula
+var total;
 
 //vamos a definir variables las cuales van a optener datos de la respuesta a nuestra peticion, esto con la finalidad de
 //presentarlas mediante una inyeccion con AJAX
@@ -15,16 +15,15 @@ var escritor;
 var imdbRat;
 var production;
 var plot;
+var pagina = 1 ;
 
-function paginacion(){
 
 
-}
 function buscarPorTitulo(){
   //obtenemos el valor que esta almacenando en nuestro input de tipo texto con un id ='titulo'
   var titulo = document.getElementById("titulo").value;
 
-  detalles="";
+  var detalles = "";
   //si el cuadro de texto input esta vacio entonces retornamos que no se ha encontrado nada
   if(titulo==""){
     detalles = "<tr>" + 
@@ -47,40 +46,35 @@ function buscarPorTitulo(){
 
     //una vez ya esta la peticion lista entonces enviamos una funcion vacia para verificar que se la haya procesado correctamente
     xmlhttp.onreadystatechange = function(){
-      // una respuesta de 200 significa que ha sido satisfactoria
       if(this.readyState == 4 && this.status == 200){
-
         //usamos JSON.parse para transformar los datos que se van a obtener de la respuesta
         data = JSON.parse(this.responseText)
-
+        total = Math.round((data.totalResults)/10);
+        bloquear();
         //un for each para iterar por cada uno de los elementos de la respuesta
         // movie => es una funcion lambda para optener el objeto de la respuesta
-        data.Search.forEach(movie => {
-
-          //lo que se va a inyectar en nuestra pagina
+        data.Search.forEach(movie =>{
           detalles += "<tr>"+
-                      //vamos a obtener cado uno de las variables del objeto JSON
-                      "<td><img src="+movie.Poster + "></td" +
-                      "<td></td>"+
-                      "<td>" + movie.Title + "</td>" +
-                      "<td>" + movie.Year + "</td>" +
-                      "<td>" + movie.Type + "</td>" +
-                      "<td><a href='#'  style='text-decoration:none'     onclick=\"buscarPorID('" + movie.imdbID + "')\">'<i class='fa fa-eye'></i>'</a>" +
-                      "</tr>";     
-                      console.log(data.totalResults);
-                      console.log(this.responseText);     
-                                  
+          //vamos a obtener cado uno de las variables del objeto JSON
+          "<td><img src="+movie.Poster + "></td" +
+          "<td></td>"+
+          "<td>" + movie.Title + "</td>" +
+          "<td>" + movie.Year + "</td>" +
+          "<td>" + movie.Type + "</td>" +
+          "<td><a href='#'  style='text-decoration:none'     onclick=\"buscarPorID('" + movie.imdbID + "')\">'<i class='fa fa-eye'></i>'</a>" +
+          "</tr>";     
+
         });
-        //para hacer un inyeccion con ajax, en nuestro html tenemos un div con un id = "informacion"
         document.getElementById("informacion").innerHTML = detalles;
       }
     };
-    //especificamos el tipo de request que vamos a hacer, establecemos a donde vamos a realizar este quest
-    xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full&page=9",true);
-    //enviamos nuestro request
-    xmlhttp.send();
+      xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=70833c90&s="+titulo +"&plot=full",true);
+      //enviamos nuestro request
+      xmlhttp.send();
   }
 }
+    
+
 
 //esta funcion es para cuando se le da click en el ojo de 'detalles'
 function displayFullInfo(idMovie){
@@ -152,4 +146,77 @@ function cerrarPopup() {
     popup = document.getElementById('popup');
     overlay.classList.remove('active');
     popup.classList.remove('active');
+}
+
+function nextPage() {  
+  pagina = pagina + 1;
+  paginacion(pagina);
+}
+
+function prevPage() { 
+
+  pagina = pagina - 1;
+  paginacion(pagina);
+
+}
+function bloquear(){
+  var btnAtras = document.getElementById("btn-atras");
+  var btnAdelante = document.getElementById("btn-adel");
+
+  btnAdelante.disabled = false;
+
+  if(pagina==1){
+      btnAtras.disabled = true;
+  }else {
+      btnAtras.disabled = false;
+  }
+
+  if(pagina<total){
+      btnAdelante.disabled = false;
+  }else if(pagina==total){
+      btnAdelante.disabled = true;
+  }
+
+  if(total==0){
+      btnAdeltante.disabled = true;
+      btnAtras.disabled = true;
+  }
+}
+
+
+function paginacion(pagina) {
+  var titulo = document.getElementById("titulo").value;
+  var detalles = "";
+  bloquear();
+  if (titulo == "") {
+      detalles = "<tr>" +
+          "<td colspan='5'>No informacion disponible...</td>" +
+          "</tr>";
+      document.getElementById("tableDetallesPeliculas").innerHTML = detalles;
+  } else {
+      if (window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest();
+      } else {
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+              data = JSON.parse(this.responseText)
+              data.Search.forEach(movie => {
+                  detalles += "<tr>" +
+                  "<td><img src="+movie.Poster + "></td" +
+                  "<td></td>"+
+                  "<td>" + movie.Title + "</td>" +
+                  "<td>" + movie.Year + "</td>" +
+                  "<td>" + movie.Type + "</td>" +
+                  "<td><a href='#'  style='text-decoration:none'     onclick=\"buscarPorID('" + movie.imdbID + "')\">'<i class='fa fa-eye'></i>'</a>" +
+                  "</tr>"; 
+              });
+              document.getElementById("informacion").innerHTML = detalles;
+          }
+      };
+
+      xmlhttp.open("GET", "https://www.omdbapi.com/?apikey=e38ce2e0&s=" + titulo + "&plot=full&page=" + pagina, true);
+      xmlhttp.send();
+  }
 }
