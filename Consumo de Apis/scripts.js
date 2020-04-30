@@ -7,13 +7,9 @@ var total;
 //presentarlas mediante una inyeccion con AJAX
 var title;
 var poster;
-var rated;
 var anio;
 var genero;
 var director;
-var escritor;
-var imdbRat;
-var production;
 var plot;
 var pagina = 1 ;
 
